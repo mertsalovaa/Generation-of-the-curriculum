@@ -1,7 +1,12 @@
+using CourseWork.DATA_ACCESS;
+using CourseWork.DATA_ACCESS.Entities;
+using CourseWork.DOMAIN.Seeder;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,9 +25,16 @@ namespace CourseWork_
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+            services.AddDbContext<EFContext>(opt =>
+            opt.UseSqlServer(Configuration["ConnectionString"],
+            x => x.MigrationsAssembly("CourseWork_")));
+
+            //services.AddIdentity<User, IdentityRole>()
+            //    .AddEntityFrameworkStores<EFContext>()
+            //    .AddDefaultTokenProviders();
 
             services.AddControllersWithViews();
-
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -46,15 +58,15 @@ namespace CourseWork_
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
-
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
 
             app.UseSpa(spa =>
@@ -66,6 +78,8 @@ namespace CourseWork_
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            SeederDatabase.SeedData(app.ApplicationServices);
         }
     }
 }

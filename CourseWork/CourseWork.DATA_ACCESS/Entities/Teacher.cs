@@ -10,6 +10,11 @@ namespace CourseWork.DATA_ACCESS.Entities
 {
     public class Teacher
     {
+        public Teacher()
+        {
+            Subjects = new List<Subject>();
+        }
+        
         [Key]
         public int Id { get; set; }
 

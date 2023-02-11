@@ -33,17 +33,17 @@ namespace CourseWork.DATA_ACCESS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SpeciallityId")
+                    b.Property<int?>("SpecialityId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SpeciallityId");
+                    b.HasIndex("SpecialityId");
 
                     b.ToTable("Groups");
                 });
 
-            modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.Speciallity", b =>
+            modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.Speciality", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace CourseWork.DATA_ACCESS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Speciallities");
+                    b.ToTable("Specialities");
                 });
 
             modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.Student", b =>
@@ -150,6 +150,28 @@ namespace CourseWork.DATA_ACCESS.Migrations
                     b.ToTable("Subjects");
                 });
 
+            modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.SubjectTeacher", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubjectId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("SubjectTeachers");
+                });
+
             modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.Teacher", b =>
                 {
                     b.Property<int>("Id")
@@ -212,17 +234,17 @@ namespace CourseWork.DATA_ACCESS.Migrations
 
             modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.Group", b =>
                 {
-                    b.HasOne("CourseWork.DATA_ACCESS.Entities.Speciallity", "Speciallity")
+                    b.HasOne("CourseWork.DATA_ACCESS.Entities.Speciality", "Speciality")
                         .WithMany("Groups")
-                        .HasForeignKey("SpeciallityId");
+                        .HasForeignKey("SpecialityId");
 
-                    b.Navigation("Speciallity");
+                    b.Navigation("Speciality");
                 });
 
             modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.Student", b =>
                 {
                     b.HasOne("CourseWork.DATA_ACCESS.Entities.Group", "Group")
-                        .WithMany()
+                        .WithMany("Students")
                         .HasForeignKey("GroupId");
 
                     b.HasOne("CourseWork.DATA_ACCESS.Entities.User", "User")
@@ -256,6 +278,21 @@ namespace CourseWork.DATA_ACCESS.Migrations
                         .HasForeignKey("GroupId");
                 });
 
+            modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.SubjectTeacher", b =>
+                {
+                    b.HasOne("CourseWork.DATA_ACCESS.Entities.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectId");
+
+                    b.HasOne("CourseWork.DATA_ACCESS.Entities.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId");
+
+                    b.Navigation("Subject");
+
+                    b.Navigation("Teacher");
+                });
+
             modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.Teacher", b =>
                 {
                     b.HasOne("CourseWork.DATA_ACCESS.Entities.User", "User")
@@ -282,10 +319,12 @@ namespace CourseWork.DATA_ACCESS.Migrations
 
             modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.Group", b =>
                 {
+                    b.Navigation("Students");
+
                     b.Navigation("Subjects");
                 });
 
-            modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.Speciallity", b =>
+            modelBuilder.Entity("CourseWork.DATA_ACCESS.Entities.Speciality", b =>
                 {
                     b.Navigation("Groups");
                 });

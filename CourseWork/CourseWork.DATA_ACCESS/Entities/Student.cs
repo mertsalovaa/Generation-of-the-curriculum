@@ -10,6 +10,11 @@ namespace CourseWork.DATA_ACCESS.Entities
 {
     public class Student
     {
+        public Student()
+        {
+            Assessments = new List<StudentAssessment>();
+        }
+        
         [Key]
         public int Id { get; set; }
 
@@ -25,7 +30,5 @@ namespace CourseWork.DATA_ACCESS.Entities
         public virtual Group Group { get; set; }
 
         public ICollection<StudentAssessment> Assessments { get; set; }
-
-
     }
 }

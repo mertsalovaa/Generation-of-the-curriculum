@@ -10,6 +10,12 @@ namespace CourseWork.DATA_ACCESS.Entities
 {
     public class Group
     {
+        public Group()
+        {
+            Subjects = new List<Subject>(); 
+            Students = new List<Student>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -18,10 +24,12 @@ namespace CourseWork.DATA_ACCESS.Entities
 
         public string FormOfStudying { get; set; }
 
-        public int? SpeciallityId { get; set; }
-        [ForeignKey(nameof(SpeciallityId))]
-        public virtual Speciallity Speciallity { get; set; }
+        public int? SpecialityId { get; set; }
+        [ForeignKey(nameof(SpecialityId))]
+        public virtual Speciality Speciality { get; set; }
 
         public ICollection<Subject> Subjects { get; set; }
+
+        public ICollection<Student> Students { get; set; }
     }
 }
