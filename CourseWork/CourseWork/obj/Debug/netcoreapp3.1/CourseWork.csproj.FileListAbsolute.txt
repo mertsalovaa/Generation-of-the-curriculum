@@ -99,3 +99,14 @@ D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\obj\De
 D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\obj\Debug\netcoreapp3.1\CourseWork.dll
 D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\obj\Debug\netcoreapp3.1\CourseWork.pdb
 D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\obj\Debug\netcoreapp3.1\CourseWork.genruntimeconfig.cache
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll

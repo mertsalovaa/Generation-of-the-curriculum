@@ -11,8 +11,7 @@ namespace CourseWork.DATA_ACCESS.Entities
     public class Group
     {
         public Group()
-        {
-            Subjects = new List<Subject>(); 
+        { 
             Students = new List<Student>();
         }
 
@@ -28,7 +27,9 @@ namespace CourseWork.DATA_ACCESS.Entities
         [ForeignKey(nameof(SpecialityId))]
         public virtual Speciality Speciality { get; set; }
 
-        public ICollection<Subject> Subjects { get; set; }
+        public int? СurriculumId { get; set; }
+        [ForeignKey(nameof(СurriculumId))]
+        public virtual Сurriculum Сurriculum { get; set; }
 
         public ICollection<Student> Students { get; set; }
     }

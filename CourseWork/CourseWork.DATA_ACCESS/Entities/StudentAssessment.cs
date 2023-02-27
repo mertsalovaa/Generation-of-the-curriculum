@@ -16,11 +16,11 @@ namespace CourseWork.DATA_ACCESS.Entities
         [ForeignKey(nameof(SubjectId))]
         public virtual Subject Subject { get; set; }
 
-        public int? StudentId { get; set; }
+        public string StudentId { get; set; }
         [ForeignKey(nameof(StudentId))]
         public virtual Student Student { get; set; }
 
-        public float AverageValue { get; set; }
+        public float Value { get; set; }
 
     }
 }

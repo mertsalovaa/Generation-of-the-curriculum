@@ -15,7 +15,7 @@ namespace CourseWork.DATA_ACCESS.Entities
         [ForeignKey(nameof(SubjectId))]
         public virtual Subject Subject { get; set; }
 
-        public int? TeacherId { get; set; }
+        public string TeacherId { get; set; }
         [ForeignKey(nameof(TeacherId))]
         public virtual Teacher Teacher { get; set; }
     }

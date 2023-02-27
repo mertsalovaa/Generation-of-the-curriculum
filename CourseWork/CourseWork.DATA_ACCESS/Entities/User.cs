@@ -4,14 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace CourseWork.DATA_ACCESS.Entities
 {
-    public class User 
+    public class User : IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public string FirstName { get; set; } 
 

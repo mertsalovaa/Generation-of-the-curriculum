@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CourseWork.DATA_ACCESS.Constants;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,10 +20,12 @@ namespace CourseWork.DATA_ACCESS.Entities
 
         [Required]
         public string Name { get; set; }
-        public bool IsZalik { get; set; }
-        public bool IsExam { get; set; }
-        public bool IsVybirkova { get; set; }
         public string Description { get; set; }
+        public FormOfControl FormOfControl { get; set; }
+        public float Credits { get; set; }
+        public float Lectures { get; set; }
+        public float Labworks { get; set; }
+        public float Practical { get; set; }
         public ICollection<Teacher> Teachers { get; set; }
     }
 }

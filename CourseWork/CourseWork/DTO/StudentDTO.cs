@@ -1,6 +1,7 @@
 ﻿using CourseWork.DATA_ACCESS.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace CourseWork.DTO
 {
@@ -10,20 +11,10 @@ namespace CourseWork.DTO
         {
             Assessments = new List<StudentAssessmentDTO>();
         }
-
-        public int Id { get; set; }
         
-        [Required(ErrorMessage = "Поле Прізвище є обов'язковим")]
-        public string LastName { get; set; }
+        public string Id { get; set; }
 
-        [Required(ErrorMessage = "Поле Ім'я є обов'язковим")]
-        public string FirstName { get; set; }
-
-        [Required(ErrorMessage = "Поле По-батькові є обов'язковим")]
-        public string MiddleName { get; set; }
-
-        [Required(ErrorMessage = "Поле Кооперативна пошта є обов'язковим")]
-        public string CooperativeEmail { get; set; }
+        public UserDTO User { get; set; }
 
         [Required(ErrorMessage = "Поле Власна пошта є обов'язковим")]
         public string OwnEmail { get; set; }

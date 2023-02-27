@@ -16,9 +16,9 @@ namespace CourseWork.DATA_ACCESS.Entities
         }
         
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
-        public int? UserId { get; set; }
+        public string UserId { get; set; }
         [ForeignKey(nameof(UserId))]
         public virtual User User { get; set; }
 
