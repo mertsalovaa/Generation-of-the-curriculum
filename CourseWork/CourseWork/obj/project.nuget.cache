@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "v2T7lPbn1qBu6llJDeWXLopy10NQMI3643V0KVwAc+8dtPQAxIN658c3gwNANdH7PUrURQC6UnrXWzCUL26QDw==",
+  "dgSpecHash": "mB3+TT+nGXX1fyXuO+G1oa0Vfdkj/zLyaHGFbV8I/M/2XSk/0rkzhACQhPzFE42V1W0IODoD4w6YjlH+PwF9Wg==",
   "success": true,
   "projectFilePath": "D:\\нувгп\\ІПЗ-21\\курсова робота\\CourseWork\\CourseWork\\CourseWork.csproj",
   "expectedPackageFiles": [
@@ -64,6 +64,7 @@
     "C:\\Users\\Iryna Mertsalova\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\Iryna Mertsalova\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Iryna Mertsalova\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
+    "C:\\Users\\Iryna Mertsalova\\.nuget\\packages\\microsoft.office.interop.excel\\15.0.4795.1001\\microsoft.office.interop.excel.15.0.4795.1001.nupkg.sha512",
     "C:\\Users\\Iryna Mertsalova\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Iryna Mertsalova\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Iryna Mertsalova\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",

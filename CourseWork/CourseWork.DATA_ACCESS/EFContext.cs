@@ -10,7 +10,7 @@ namespace CourseWork.DATA_ACCESS
 {
     public class EFContext : IdentityDbContext<User>
     {
-        public EFContext(DbContextOptions<EFContext> options) : base(options) { }
+        //public EFContext(DbContextOptions<EFContext> options) : base(options) { }
 
         public DbSet<StudentAssessment> StudentAssessments { get; set; }
         public DbSet<Subject> Subjects { get; set; }
@@ -20,6 +20,7 @@ namespace CourseWork.DATA_ACCESS
         public DbSet<Student> Students { get; set; }
         public DbSet<SubjectTeacher> SubjectTeachers { get; set; }
         public DbSet<Сurriculum> Сurriculums { get; set; }
+        public DbSet<Abiturient> Abiturients { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

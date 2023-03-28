@@ -110,3 +110,4 @@ D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\De
 D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\Microsoft.Office.Interop.Excel.dll

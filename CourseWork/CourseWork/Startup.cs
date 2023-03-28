@@ -38,9 +38,9 @@ namespace CourseWork
         {
             //services.AddCors();
 
-            services.AddDbContext<EFContext>(opt =>
-                opt.UseSqlServer(Configuration.GetConnectionString("ConnectionString"))
-            );
+            //services.AddDbContext<EFContext>(opt =>
+            //    opt.UseSqlServer(Configuration.GetConnectionString("ConnectionString"))
+            //);
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<EFContext>()
