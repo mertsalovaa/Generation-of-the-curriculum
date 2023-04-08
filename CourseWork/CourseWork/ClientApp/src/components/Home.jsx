@@ -1,10 +1,11 @@
 import React, { Component, useRef, useState } from "react";
 import axios from "axios";
-import photo from "./images/main-photos.png";
+import photo from "./images/main-photo.png";
 import styled from "styled-components";
 import { Col, Container, Row } from "react-bootstrap";
 import { FontInterSBold } from "./utils/styling-partial";
 import { lightMainColor, mainColor } from "./utils/colors";
+import { Link } from "react-router-dom";
 
 const data = [
   {
@@ -76,6 +77,9 @@ export function Home() {
 
   return (
     <Row className="w-100 m-0">
+      <Col xs={12} md={8} className="p-0">
+        <MainImg src={photo} alt="img" />
+      </Col>
       <MyCol
         xs={6}
         md={4}
@@ -83,34 +87,11 @@ export function Home() {
       >
         <p>Знаходь тут відповіді на свої питання</p>
         <MyHr />
-        <BeginBtn>Розпочати</BeginBtn>
-        <div className="m-4">
-          <input  type="text" id="lastName" ref={lastName} />
-          <input type="text" id="firstName" ref={firstName} />
-          <input type="text" id="fatherName" ref={fatherName} />
-          <input type="number" id="phone" ref={phone} />
-          <select value={institute} onChange={handleChange}>
-            <option defaultChecked>Вибрати інститут</option>
-            {data.map((item) => {
-              return (
-                <option key={item.id} value={item.value}>
-                  {item.name}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <button className="btn btn-dark" onClick={formSubmit}>
-          Submit
-        </button>
-        <div>
-          <EmailText className="email-text"></EmailText>
-          <EmailText className="password-text"></EmailText>
-        </div>
+        <BeginBtn className="m-3">Розпочати</BeginBtn>
+        <Link to={"/generate-abiturient"}>
+          <BeginBtn className="m-3">Генерація абітурієнта</BeginBtn>
+        </Link>
       </MyCol>
-      <Col xs={12} md={8} className="p-0">
-        <MainImg src={photo} alt="img" />
-      </Col>
     </Row>
   );
 }
@@ -160,3 +141,29 @@ const BeginBtn = styled.button`
     color: #ffffff;
   }
 `;
+
+{
+  /* <div className="m-4">
+          <input  type="text" id="lastName" ref={lastName} />
+          <input type="text" id="firstName" ref={firstName} />
+          <input type="text" id="fatherName" ref={fatherName} />
+          <input type="number" id="phone" ref={phone} />
+          <select value={institute} onChange={handleChange}>
+            <option defaultChecked>Вибрати інститут</option>
+            {data.map((item) => {
+              return (
+                <option key={item.id} value={item.value}>
+                  {item.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <button className="btn btn-dark" onClick={formSubmit}>
+          Submit
+        </button>
+        <div>
+          <EmailText className="email-text"></EmailText>
+          <EmailText className="password-text"></EmailText>
+        </div> */
+}

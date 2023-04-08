@@ -7,6 +7,7 @@ import "./custom.css";
 import { Home } from "./components/Home";
 import React from "react";
 import { Login } from "./components/Login";
+import { GenerateAbiturient } from "./components/Generate-abiturient";
 
 export default class App extends React.Component {
   static displayName = App.name;
@@ -17,6 +18,7 @@ export default class App extends React.Component {
         <Layout>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
+          <Route path="/generate-abiturient" component={GenerateAbiturient} />
           <Route path="/fetch-data" component={FetchData} />
         </Layout>
       </Router>

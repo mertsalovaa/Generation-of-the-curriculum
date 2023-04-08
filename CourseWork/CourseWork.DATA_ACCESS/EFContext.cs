@@ -10,7 +10,7 @@ namespace CourseWork.DATA_ACCESS
 {
     public class EFContext : IdentityDbContext<User>
     {
-        //public EFContext(DbContextOptions<EFContext> options) : base(options) { }
+        public EFContext(DbContextOptions<EFContext> options) : base(options) { }
 
         public DbSet<StudentAssessment> StudentAssessments { get; set; }
         public DbSet<Subject> Subjects { get; set; }
