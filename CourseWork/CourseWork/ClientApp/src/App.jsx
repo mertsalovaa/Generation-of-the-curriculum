@@ -18,8 +18,8 @@ export default class App extends React.Component {
         <Layout>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
-          <Route path="/generate-abiturient" component={GenerateAbiturient} />
           <Route path="/fetch-data" component={FetchData} />
+          <Route path="/generate-abiturient" component={GenerateAbiturient} />
         </Layout>
       </Router>
     );

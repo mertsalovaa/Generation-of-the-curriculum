@@ -85,12 +85,12 @@ namespace CourseWork.Controllers
             using (StreamWriter writer = new StreamWriter(@"D:\нувгп\ІПЗ-21\курсова робота\CourseWork\CourseWork\abiturients.txt"))
             {
                 writer.WriteLine($"{textOfFile}" +
-                    $"{abiturient.LastName}\t" +
+                    $"{abiturient.LastName}\t\t" +
                     $"{abiturient.FirstName}\t\t" +
-                    $"{abiturient.FatherName} \t" +
-                    $"{abiturient.Institute}\t\t\t" +
+                    $"{abiturient.FatherName} \t\t" +
+                    $"{abiturient.Institute}\t\t" +
                     $"{abiturient.Phone}\t" +
-                    $"{abiturient.Email}\t\t" +
+                    $"{abiturient.Email}\t" +
                     $"{abiturient.Password}");
             }
 

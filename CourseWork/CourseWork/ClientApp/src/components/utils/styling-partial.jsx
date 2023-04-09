@@ -30,3 +30,14 @@ export const FontInter = css`
   font-family: "Inter", sans-serif;
   font-style: normal;
 `;
+export const FormStyling = css`
+  border: 1px solid #dedede;
+  border-radius: 1.2em;
+  padding: 0.5em 1em;
+  margin: 0.45em;
+  color: #858585;
+  letter-spacing: 0.4px;
+  outline: none;
+  font-size: 1.05em;
+  width: 75%;
+`;
