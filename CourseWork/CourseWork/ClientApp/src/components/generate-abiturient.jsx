@@ -19,7 +19,6 @@ export function GenerateAbiturient() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
-  let nameOfSelectedInstitute = "";
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -33,26 +32,17 @@ export function GenerateAbiturient() {
   };
 
   function formSubmit(state) {
-    // axios
-    //   .get(
-    //     `https://localhost:44308/api/Abiturient/generate?lastName=${lastName.current.value}&firstName=${firstName.current.value}&fatherName=${fatherName.current.value}&institute=${institute}&phone=${phone}`
-    //   )
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       setEmail(response.data.email);
-    //       setPassword(response.data.password);
-    //     }
-    //   });
-    // setEmail("some_email@nuwm.edu.ua");
-    // setPassword("Qwerty1!");
-    // console.log(
-    //   `${lastName.current.value}\n${firstName.current.value}\n${fatherName.current.value}\n${phone}\n${institute}\n${email}\n${password}`
-    // );
-    // handleShow();
-    nameOfSelectedInstitute = institutes.find((i) => {
-      return i.value === institute;
-    }).name;
-    console.log(nameOfSelectedInstitute);
+    axios
+      .get(
+        `https://localhost:44308/api/Abiturient/generate?lastName=${lastName.current.value}&firstName=${firstName.current.value}&fatherName=${fatherName.current.value}&institute=${institute}&phone=${phone}`
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          setEmail(response.data.email);
+          setPassword(response.data.password);
+        }
+      });
+    handleShow();
   }
 
   return (
@@ -98,7 +88,7 @@ export function GenerateAbiturient() {
             <h5>Телефон: </h5>
             <p>{phone}</p>
             <h5>Інститут: </h5>
-            <p>{nameOfSelectedInstitute}</p>
+            <p>{institute}</p>
             <h5>Електронна адреса: </h5>
             <p>{email}</p>
             <h5>Пароль: </h5>
