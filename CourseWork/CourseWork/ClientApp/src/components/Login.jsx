@@ -1,24 +1,19 @@
-import axios from "axios";
 import React, { useState } from "react";
+import AuthService from "../services/AuthService";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dataJson = {
-    "Email": "mertsalova_ak21@nuwm.edu.ua",
-    "Password": "МерцаловаUu12!",
+    Email: "mertsalova_ak21@nuwm.edu.ua",
+    Password: "МерцаловаUu12!",
   };
 
   function handleSubmit(e) {
-    console.log(email);
-    console.log(password);
     e.preventDefault();
-    axios.post("https://localhost:44308/api/User/login", dataJson)
-    .then((response) => {
-      console.log(response);
-    });
-    
+    const responce = AuthService.login(dataJson.Email, dataJson.Password);
+    window.location.replace('./');
   }
 
   return (

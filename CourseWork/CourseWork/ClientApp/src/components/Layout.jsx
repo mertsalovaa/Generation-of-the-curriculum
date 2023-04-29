@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { Header } from './Header';
+import React, { Component } from "react";
+import { Header } from "./Header";
+import Footer from "./Footer";
 
 export class Layout extends React.Component {
   static displayName = Layout.name;
@@ -8,15 +9,14 @@ export class Layout extends React.Component {
     super(props);
     this.state = { spinnerLoading: true };
   }
-  
 
-  render () {
+  render() {
     return (
-      <div >        
+      <div>
         <Header />
-          {this.props.children}
+        {this.props.children}
+        <Footer />
       </div>
     );
   }
 }
-

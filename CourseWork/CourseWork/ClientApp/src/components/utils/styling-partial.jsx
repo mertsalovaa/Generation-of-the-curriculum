@@ -31,6 +31,7 @@ export const FontInter = css`
   font-style: normal;
 `;
 export const FormStyling = css`
+  ${FontInterSBold};
   border: 1px solid #dedede;
   border-radius: 1.2em;
   padding: 0.5em 1em;

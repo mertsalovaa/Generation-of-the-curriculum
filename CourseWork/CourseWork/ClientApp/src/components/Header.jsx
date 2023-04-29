@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -6,42 +6,72 @@ import logo_icon from "./images/logo.svg";
 import {
   colorHoverHeader,
   headerLink,
+  headerTextStyle,
   langColor,
   lightGray,
   mainColor,
+  visible,
 } from "./utils/colors";
 import { device, FontInterSBold } from "./utils/styling-partial";
+import AuthService from "../services/AuthService";
+import "../custom.css";
 
-export class Header extends React.Component {
-  render() {
-    return (
-      <NavbarDiv expand="lg">
-        <Container fluid>
-          <Navbar.Brand href="./Home">
-            <Logo src={logo_icon} alt="logo" />
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Menu className="w-100">
-              <div className="w-100 d-flex justify-content-between align-items-center me-lg-0 me-xl-4 m-0">
+export const Header = () => {
+  const [token, setToken] = useState();
+  const [currentUser, setCurrentUser] = useState();
+
+  useEffect(() => {
+    setToken(AuthService.getToken());
+    setCurrentUser(localStorage.getItem("email"));
+  }, [token, currentUser]);
+
+  window.onload = () => {
+    if (token.length === 4) {
+      document.getElementById("logout").style = "display: none;";
+    } else {
+      document.getElementById("login").style = "display: none;";
+    }
+  };
+
+  const logout = () => {
+    AuthService.logout();
+    localStorage.removeItem("email");
+    setToken(null);
+    console.log(token);
+    window.location.replace("./");
+  };
+
+  return (
+    <NavbarDiv expand="lg">
+      <Container fluid>
+        <Navbar.Brand href="./">
+          <Logo src={logo_icon} alt="logo" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Menu className="w-100">
+            <div className="w-100 d-flex justify-content-between align-items-center me-lg-0 me-xl-4 m-0">
+              <span id="logout" className="w-100 d-flex justify-content-evenly align-items-center">
                 <HeaderLink to="/">Твої предмети</HeaderLink>
                 <HeaderLink to="/">Твої одногрупники</HeaderLink>
-                <HeaderLink to="/">Твої викладачі</HeaderLink>
-                <HeaderLink to="/">Твій профіль</HeaderLink>
+                <HeaderLink to="/profile">Твій профіль</HeaderLink>
                 <Lang>
                   Укр <span>/ Eng</span>
                 </Lang>
-                <Link to={"/login"}>
-                  <SignInBtn>Увійти</SignInBtn>
-                </Link>
-              </div>
-            </Menu>
-          </Navbar.Collapse>
-        </Container>
-      </NavbarDiv>
-    );
-  }
-}
+                <HeaderLink to={""} onClick={logout}>
+                  Вийти
+                </HeaderLink>
+              </span>
+              <Link id="login" to={"/login"}>
+                <SignInBtn>Увійти</SignInBtn>
+              </Link>
+            </div>
+          </Menu>
+        </Navbar.Collapse>
+      </Container>
+    </NavbarDiv>
+  );
+};
 
 const NavbarDiv = styled(Navbar)`
   box-shadow: 0px 1px 4px #004a7180;
@@ -84,33 +114,17 @@ const Lang = styled.p`
     margin: 0.8em;
   }
 `;
-
 const HeaderLink = styled(Link)`
-  ${FontInterSBold};
-  font-size: 1em;
-  padding: 0.1em;
-  color: ${headerLink};
-  ${colorHoverHeader};
-  -webkit-background-clip: text, padding-box;
-  background-clip: text, padding-box;
-  transition: 0.5s;
-
-  &:hover {
-    color: ${mainColor};
-    --c: 100%;
-    text-decoration: none;
-  }
-
-  @media ${device.mobileS} {
-    margin: 0.8em;
-  }
+  ${headerTextStyle};
 `;
-
+const Text = styled.p`
+  ${headerTextStyle};
+  font-size: 1.1em !important;
+`;
 const Logo = styled.img`
   height: 3em;
   margin: 0 6em;
 `;
-
 const Menu = styled(Nav)`
   margin-right: 0;
   margin-left: auto;
@@ -143,7 +157,3 @@ const Menu = styled(Nav)`
     }
   }
 `;
-
-// export const HeaderLink: React.FC<ISafeLinkProps> = forwardRef((props: ISafeLinkProps, ref) => (
-//   <SafeLink {...props} isHeader ref={ref} />
-// ))

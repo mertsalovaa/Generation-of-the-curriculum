@@ -109,9 +109,9 @@ const Title = styled.p`
   padding: 1em;
   color: ${headerLink};
 `;
-const Input = styled.input`
+export const Input = styled.input`
   ${FormStyling};
 `;
-const Select = styled.select`
+export const Select = styled.select`
   ${FormStyling};
 `;

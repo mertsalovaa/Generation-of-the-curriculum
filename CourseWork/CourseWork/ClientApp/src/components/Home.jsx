@@ -7,87 +7,22 @@ import { FontInterSBold } from "./utils/styling-partial";
 import { lightMainColor, mainColor } from "./utils/colors";
 import { Link } from "react-router-dom";
 
-const data = [
-  {
-    id: 1,
-    name: "Автоматики, кібернетики та обчислювальної техніки",
-    value: "ak",
-  },
-  {
-    id: 2,
-    name: "Водного господарства та природооблаштування",
-    value: "vgp",
-  },
-  {
-    id: 3,
-    name: "Будівництва та архітектури",
-    value: "ba",
-  },
-  {
-    id: 4,
-    name: "Агроекології та землеустрою",
-    value: "az",
-  },
-  {
-    id: 5,
-    name: "Механічний",
-    value: "mi",
-  },
-  {
-    id: 6,
-    name: "Права",
-    value: "pr",
-  },
-  {
-    id: 7,
-    name: "Економіки та менеджменту",
-    value: "em",
-  },
-  {
-    id: 8,
-    name: "Охорони здоров'я",
-    value: "oz",
-  },
-];
-
 export function Home() {
-  const lastName = useRef(null);
-  const firstName = useRef(null);
-  const phone = useRef(null);
-  const fatherName = useRef(null);
-  const [institute, setInstitute] = useState("");
-
-  function formSubmit() {
-    axios
-      .get(
-        `https://localhost:44308/api/User/generate-abiturient?lastName=${lastName.current.value}&firstName=${firstName.current.value}&institute=${institute}`
-      )
-      .then((response) => {
-        if (response.status === 200) {
-          document.querySelector(".email-text").innerText =
-            "Електронна адреса: " + response.data.email;
-          document.querySelector(".password-text").innerText =
-            "Тимчасовий пароль: " + response.data.password;
-        }
-      });
-  }
-  const handleChange = (e) => {
-    setInstitute(e.target.value);
-  };
-
   return (
-    <Row className="w-100 m-0">
-      <Col xs={12} md={8} className="p-0">
+    <Row className="w-100">
+      <Col xs={12} md={8} className="p-1">
         <MainImg src={photo} alt="img" />
       </Col>
       <MyCol
-        xs={6}
+        xs={12}
         md={4}
         className="d-flex flex-column align-items-center justify-content-center"
       >
         <p>Знаходь тут відповіді на свої питання</p>
         <MyHr />
-        <BeginBtn className="m-3">Розпочати</BeginBtn>
+        <Link to={"/login"}>
+          <BeginBtn className="m-3">Розпочати</BeginBtn>
+        </Link>
         <Link to={"/generate-abiturient"}>
           <BeginBtn className="m-3">Генерація абітурієнта</BeginBtn>
         </Link>
@@ -95,11 +30,6 @@ export function Home() {
     </Row>
   );
 }
-
-const EmailText = styled.p`
-  color: #000 !important;
-  font-size: 1.35em !important;
-`;
 
 const MyHr = styled.hr`
   border: none;
@@ -119,10 +49,11 @@ const MyCol = styled(Col)`
   ${FontInterSBold};
 
   p {
+    width: 80%;
     color: ${mainColor};
-    font-size: 2em;
-    width: 11em;
-    margin-left: 2em;
+    font-size: 1.5em;
+    text-align: center;
+    margin: 0 auto;
   }
 `;
 
@@ -141,29 +72,3 @@ const BeginBtn = styled.button`
     color: #ffffff;
   }
 `;
-
-{
-  /* <div className="m-4">
-          <input  type="text" id="lastName" ref={lastName} />
-          <input type="text" id="firstName" ref={firstName} />
-          <input type="text" id="fatherName" ref={fatherName} />
-          <input type="number" id="phone" ref={phone} />
-          <select value={institute} onChange={handleChange}>
-            <option defaultChecked>Вибрати інститут</option>
-            {data.map((item) => {
-              return (
-                <option key={item.id} value={item.value}>
-                  {item.name}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <button className="btn btn-dark" onClick={formSubmit}>
-          Submit
-        </button>
-        <div>
-          <EmailText className="email-text"></EmailText>
-          <EmailText className="password-text"></EmailText>
-        </div> */
-}
