@@ -5,16 +5,12 @@ using System.Globalization;
 
 namespace CourseWork.DTO
 {
-    public class StudentDTO
+    public class StudentDTO : UserDTO
     {
         public StudentDTO()
         {
             Assessments = new List<StudentAssessmentDTO>();
         }
-        
-        public string Id { get; set; }
-
-        public UserDTO User { get; set; }
 
         [Required(ErrorMessage = "Поле Власна пошта є обов'язковим")]
         public string OwnEmail { get; set; }

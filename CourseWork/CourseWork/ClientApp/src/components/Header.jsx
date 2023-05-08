@@ -24,12 +24,13 @@ export const Header = () => {
     setToken(AuthService.getToken());
     setCurrentUser(localStorage.getItem("email"));
   }, [token, currentUser]);
-
+  
   window.onload = () => {
-    if (token.length === 4) {
-      document.getElementById("logout").style = "display: none;";
+    if (token.length === 4 || token === null) {
+      console.log(token);
+      document.getElementById("logout").style = "display: none !important;";
     } else {
-      document.getElementById("login").style = "display: none;";
+      document.getElementById("login").style = "display: none !important;";
     }
   };
 
@@ -51,7 +52,10 @@ export const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Menu className="w-100">
             <div className="w-100 d-flex justify-content-between align-items-center me-lg-0 me-xl-4 m-0">
-              <span id="logout" className="w-100 d-flex justify-content-evenly align-items-center">
+              <span
+                id="logout"
+                className="w-100 d-flex justify-content-evenly align-items-center"
+              >
                 <HeaderLink to="/">Твої предмети</HeaderLink>
                 <HeaderLink to="/">Твої одногрупники</HeaderLink>
                 <HeaderLink to="/profile">Твій профіль</HeaderLink>

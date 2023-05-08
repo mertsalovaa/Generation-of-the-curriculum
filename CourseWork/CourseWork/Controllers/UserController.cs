@@ -89,10 +89,10 @@ namespace CourseWork.Controllers
             }
         }
 
-        [HttpGet("get-assessments-by-id")]
-        public List<StudentAssessmentDTO> GetAssessmentsByStudentId([FromQuery] string id)
+        [HttpGet("get-assessments-by-email")]
+        public List<StudentAssessmentDTO> GetAssessmentsByStudentEmail([FromQuery] string email)
         {
-            var user = context.Students.FirstOrDefault(x => x.Id == id);
+            var user = context.Students.FirstOrDefault(x => context.Users.FirstOrDefault(u => u.Id == x.UserId).CooperativeEmail == email);
             return context.StudentAssessments.Where(x => x.StudentId == user.Id)
                 .Select(a => new StudentAssessmentDTO()
                 {
@@ -103,41 +103,81 @@ namespace CourseWork.Controllers
                 }).ToList();
         }
 
-        [HttpGet("get-classmates-by-id")]
-        public List<StudentDTO> GetClassmatesByStudentId([FromQuery] string id)
+        [HttpGet("get-classmates-by-email")]
+        public List<StudentDTO> GetClassmatesByStudentId([FromQuery] string email)
         {
-            var user = context.Students.FirstOrDefault(x => x.Id == id);
+            var user = context.Students.FirstOrDefault(x => context.Users.FirstOrDefault(u => u.Id == x.UserId).CooperativeEmail == email);
             return context.Students.Where(x => x.GroupId == user.GroupId)
-                .Select(st => new StudentDTO()
-                {
-                    Id = st.Id,
-                    OwnEmail = st.OwnEmail,
-                    GroupName = context.Groups.FirstOrDefault(g => g.Id == st.GroupId).Name
-                }).ToList();
+                .Select(st => GetCurrentStudent(context.Users.FirstOrDefault(u => u.Id == st.UserId).CooperativeEmail)).ToList();
         }
 
-
-        з
-
-        [HttpGet("get-current-user")]
-        public UserDTO GetCurrentUser([FromQuery] string email)
+        [HttpGet("get-group-by-email")]
+        public GroupDTO GetGroupByStudentId([FromQuery] string email)
         {
-            var user = context.Users.FirstOrDefault(st => st.Email == email);
+            var group = context.Groups.FirstOrDefault(g => g.Id == context.Students.FirstOrDefault(st => context.Users.FirstOrDefault(u => u.CooperativeEmail == email).CooperativeEmail == email).GroupId);
+            var curriculum = context.Сurriculums.FirstOrDefault(c => c.Id == group.СurriculumId);
+            return new GroupDTO()
+            {
+                Id = group.Id,
+                FormOfStudying = group.FormOfStudying,
+                Name = group.Name,
+                Speciality = context.Specialities.FirstOrDefault(s => s.Id == group.SpecialityId).Name,
+                Сurriculum = $"{curriculum.Name} {curriculum.Year}",
+                Students = GetClassmatesByStudentId(email)
+            };
+        }
+
+        [HttpGet("get-current-student")]
+        public StudentDTO GetCurrentStudent([FromQuery] string email)
+        {
+            var user = context.Students.FirstOrDefault(st => context.Users.FirstOrDefault(u => u.Id == st.UserId).CooperativeEmail == email);
+            var st = context.Users.FirstOrDefault(u => u.Id == user.Id);
             if (email == null)
             {
-                return new UserDTO();
+                return new StudentDTO();
             }
             else
             {
-                return new UserDTO()
+                return new StudentDTO()
                 {
                     Id = user.Id,
-                    CooperativeEmail = user.CooperativeEmail,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    MiddleName = user.MiddleName
+                    CooperativeEmail = st.CooperativeEmail,
+                    FirstName = st.FirstName,
+                    LastName = st.LastName,
+                    MiddleName = st.MiddleName,
+                    GroupName = context.Groups.FirstOrDefault(g => g.Id == user.GroupId).Name,
+                    OwnEmail = user.OwnEmail,
+                    Assessments = GetAssessmentsByStudentEmail(email)
                 };
             }
+        }
+
+        [HttpGet("get-data-teacher")]
+        public TeacherDTO GetDataTeacher([FromQuery] string email)
+        {
+            var user = context.Users.FirstOrDefault(u => u.CooperativeEmail == email);
+            var teacher = context.Teachers.FirstOrDefault(t => t.Id == user.Id);
+            return new TeacherDTO()
+            {
+                Id = teacher.Id,
+                CooperativeEmail = user.CooperativeEmail,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                MiddleName = user.MiddleName,
+                Subjects = context.SubjectTeachers.Where(s => s.TeacherId == teacher.Id).Select(n => new SubjectDTO()
+                {
+                    Id = context.Subjects.FirstOrDefault(x => x.Id == n.SubjectId).Id,
+                    Description = context.Subjects.FirstOrDefault(x => x.Id == n.SubjectId).Description,
+                    Credits = context.Subjects.FirstOrDefault(x => x.Id == n.SubjectId).Credits,
+                    FormOfControl = ((FormOfControl)context.Subjects.FirstOrDefault(x => x.Id == n.SubjectId).FormOfControl).ToString(),
+                    Labworks = context.Subjects.FirstOrDefault(x => x.Id == n.SubjectId).Labworks,
+                    Lectures = context.Subjects.FirstOrDefault(x => x.Id == n.SubjectId).Lectures,
+                    Name = context.Subjects.FirstOrDefault(x => x.Id == n.SubjectId).Name,
+                    Practical = context.Subjects.FirstOrDefault(x => x.Id == n.SubjectId).Practical,
+                    Teachers = null
+
+                }).ToList()
+            };
         }
     }
 }

@@ -45,3 +45,43 @@ export const headerTextStyle = css`
     margin: 0.8em;
   }
 `;
+export const colorHoverFooter = css`
+  background: radial-gradient(
+        circle,
+        ${footerItem} 28%,
+        ${footerItem} 53%,
+        ${footerItem} 100%
+      )
+      var(--c, 0%) / 200% 100%,
+    radial-gradient(
+        circle,
+        ${footerItem} 28%,
+        ${footerItem} 53%,
+        ${footerItem} 100%
+      )
+      0% 100% / var(--c, 0%) 0.15em no-repeat;
+`;
+export const footerTextStyle = css`
+  ${FontInterSBold};
+  font-size: 1em;
+  padding: 0.1em;
+  color: ${footerItem};
+  ${colorHoverFooter};
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  transition: 0.5s;
+
+  &:hover {
+    color: ${footerItem};
+    --c: 100%;
+    text-decoration: none;
+  }
+`;
+export const MarginCenter = css`
+  margin: 0 auto;
+`;
+export const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;

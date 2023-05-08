@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import logo from "./images/logo-footer.svg";
 import text from "./images/text-footer.svg";
 import styled from "styled-components";
-import { footerColor, footerItem, grayFooter } from "./utils/colors";
+import { footerColor, footerItem, footerTextStyle, grayFooter } from "./utils/colors";
 import { Link } from "react-router-dom";
 import { FontInter, FontInterSBold, device } from "./utils/styling-partial";
 
@@ -105,14 +105,7 @@ const MyFooter = styled(Row)`
 `;
 
 const FooterItem = styled(Link)`
-    color: ${footerItem};
-    text-decoration: none;
-    margin: 0.5em;
-
-    &:hover {
-      color: ${footerItem};
-      text-decoration-color: ${footerItem};
-    }
+    ${footerTextStyle};
 `;
 
 const FooterText = styled.p`

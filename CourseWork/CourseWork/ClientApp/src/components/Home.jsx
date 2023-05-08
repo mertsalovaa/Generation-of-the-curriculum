@@ -1,4 +1,4 @@
-import React, { Component, useRef, useState } from "react";
+import React, { Component, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import photo from "./images/main-photo.png";
 import styled from "styled-components";
@@ -8,26 +8,40 @@ import { lightMainColor, mainColor } from "./utils/colors";
 import { Link } from "react-router-dom";
 
 export function Home() {
+  const [currentUser, setCurrentUser] = useState();
+
+  useEffect(() => {
+    setCurrentUser(localStorage.getItem("email"));
+  }, [currentUser]);
+
   return (
-    <Row className="w-100">
-      <Col xs={12} md={8} className="p-1">
-        <MainImg src={photo} alt="img" />
-      </Col>
-      <MyCol
-        xs={12}
-        md={4}
-        className="d-flex flex-column align-items-center justify-content-center"
-      >
-        <p>Знаходь тут відповіді на свої питання</p>
-        <MyHr />
-        <Link to={"/login"}>
-          <BeginBtn className="m-3">Розпочати</BeginBtn>
-        </Link>
-        <Link to={"/generate-abiturient"}>
-          <BeginBtn className="m-3">Генерація абітурієнта</BeginBtn>
-        </Link>
-      </MyCol>
-    </Row>
+    <>
+      {currentUser == null ? (
+        <Row className="w-100">
+          <Col xs={12} md={8} className="p-1">
+            <MainImg src={photo} alt="img" />
+          </Col>
+          <MyCol
+            xs={12}
+            md={4}
+            className="d-flex flex-column align-items-center justify-content-center"
+          >
+            <p>Знаходь тут відповіді на свої питання</p>
+            <MyHr />
+            <Link to={"/login"}>
+              <BeginBtn className="m-3">Розпочати</BeginBtn>
+            </Link>
+            <Link to={"/generate-abiturient"}>
+              <BeginBtn className="m-3">Генерація абітурієнта</BeginBtn>
+            </Link>
+          </MyCol>
+        </Row>
+      ) : (
+        <Row className="w-100">
+          <p className="">User exist</p>
+        </Row>
+      )}
+    </>
   );
 }
 

@@ -1,46 +1,43 @@
-import React, { useRef, useState } from "react";
-import { Input } from "./Generate-abiturient";
+import React from "react";
 import styled from "styled-components";
-import { useEffect } from "react";
-import AuthService from "../services/AuthService";
-import { grayFooter, headerLink } from "./utils/colors";
+import { MarginCenter, grayFooter } from "./utils/colors";
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { user: [] };
+    this.state = { student: [] };
   }
 
   componentDidMount() {
     fetch(
-      `https://localhost:44308/api/User/get-current-user?email=${localStorage.getItem(
-        "email"
-      )}`
+      `https://localhost:44308/api/User/get-current-student?email=mertsalova_ak21@nuwm.edu.ua`
     )
       .then((response) => response.json())
       .then((data) => {
-        this.setState({ user: data });
-        console.log(data);
-        console.log(this.state.user);
+        this.setState({ student: data });
       });
   }
 
   render() {
-    const { user } = this.state;
-    console.log(user);
+    const { student } = this.state;
     return (
-      <div className="w-75">
-        {/* <p>{user.id}</p> */}
-        <TextInput tag="Прізвище" value={user.lastName} />
-        <TextInput tag="Ім'я" value={user.firstName} />
-        <TextInput tag="По-батькові" value={user.middleName} />
-        <TextInput tag="Кооперативна пошта" value={user.cooperativeEmail} />
-      </div>
+      <CenteredDiv className="w-75 pl-3 d-flex flex-column align-items-center">
+        <TextInput tag="Прізвище" value={student.lastName} />
+        <TextInput tag="Ім'я" value={student.firstName} />
+        <TextInput tag="По-батькові" value={student.middleName} />
+        <TextInput tag="Кооперативна пошта" value={student.cooperativeEmail} />
+        <TextInput tag="Власна пошта" value={student.ownEmail} />
+        <TextInput tag="Група" value={student.groupName} />
+      </CenteredDiv>
     );
   }
 }
 
 export default Profile;
+
+const CenteredDiv = styled.div`
+  ${MarginCenter}
+`;
 
 const TextInput = (props) => {
   return (
@@ -54,6 +51,7 @@ const TextInput = (props) => {
 const Card = styled.div`
   h4 {
     font-size: 1.1em;
+    margin-left: 1em;
   }
   p {
     font-size: 1em;
