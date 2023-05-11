@@ -7,6 +7,8 @@ import React from "react";
 import { Login } from "./components/Login";
 import { GenerateAbiturient } from "./components/Generate-abiturient";
 import Profile from "./components/Profile";
+import ClassmatesPage from "./components/client-pages/classmates";
+import SubjectsPage from "./components/client-pages/subjects";
 
 export default class App extends React.Component {
   static displayName = App.name;
@@ -18,6 +20,8 @@ export default class App extends React.Component {
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile} />
           <Route path="/generate-abiturient" component={GenerateAbiturient} />
+          <Route path="/client/classmates" component={ClassmatesPage} />
+          <Route path="/client/subjects" component={SubjectsPage} />
         </Layout>
       </Router>
     );

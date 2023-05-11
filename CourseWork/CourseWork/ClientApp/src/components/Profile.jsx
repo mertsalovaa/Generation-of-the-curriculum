@@ -10,7 +10,7 @@ class Profile extends React.Component {
 
   componentDidMount() {
     fetch(
-      `https://localhost:44308/api/User/get-current-student?email=mertsalova_ak21@nuwm.edu.ua`
+      `https://localhost:44308/api/User/get-current-student?email=${localStorage.getItem("email")}`
     )
       .then((response) => response.json())
       .then((data) => {

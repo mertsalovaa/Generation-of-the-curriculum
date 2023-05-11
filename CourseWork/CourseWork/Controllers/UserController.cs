@@ -108,7 +108,24 @@ namespace CourseWork.Controllers
         {
             var user = context.Students.FirstOrDefault(x => context.Users.FirstOrDefault(u => u.Id == x.UserId).CooperativeEmail == email);
             return context.Students.Where(x => x.GroupId == user.GroupId)
-                .Select(st => GetCurrentStudent(context.Users.FirstOrDefault(u => u.Id == st.UserId).CooperativeEmail)).ToList();
+                .Select(st => new StudentDTO()
+                {
+                    Id = st.Id,
+                    CooperativeEmail = context.Users.FirstOrDefault(u => u.Id == st.UserId).CooperativeEmail,
+                    FirstName = context.Users.FirstOrDefault(u => u.Id == st.UserId).FirstName,
+                    LastName = context.Users.FirstOrDefault(u => u.Id == st.UserId).LastName,
+                    MiddleName = context.Users.FirstOrDefault(u => u.Id == st.UserId).MiddleName,
+                    GroupName = context.Groups.FirstOrDefault(g => g.Id == st.GroupId).Name,
+                    OwnEmail = st.OwnEmail,
+                    Assessments = context.StudentAssessments.Where(x => x.StudentId == st.Id)
+                .Select(a => new StudentAssessmentDTO()
+                {
+                    Id = a.Id,
+                    StudentName = context.Users.FirstOrDefault(x => x.Id == user.UserId).Email,
+                    SubjectName = context.Subjects.FirstOrDefault(x => x.Id == a.SubjectId).Name,
+                    Value = a.Value
+                }).ToList()
+                }).ToList();
         }
 
         [HttpGet("get-group-by-email")]
@@ -178,6 +195,26 @@ namespace CourseWork.Controllers
 
                 }).ToList()
             };
+        }
+
+        [HttpGet("get-subject-by-email")]
+        public List<SubjectDTO> GetSubjectsByEmail([FromQuery] string email)
+        {
+            return context.Subjects.Where(s => s.Id ==
+            (context.Сurriculums.FirstOrDefault(c => c.Id == context.Groups.FirstOrDefault(
+                g => g.Id == (context.Students.FirstOrDefault(
+                    s => s.Id == context.Users.FirstOrDefault(
+                        u => u.CooperativeEmail == email).Id).GroupId)).СurriculumId)).Id).Select(s => new SubjectDTO()
+                        {
+                            Id = s.Id,
+                            Description = s.Description,
+                            Credits = s.Credits,
+                            FormOfControl = ((FormOfControl)context.Subjects.FirstOrDefault(x => x.Id == s.Id).FormOfControl).ToString(),
+                            Name = s.Name,
+                            Labworks = s.Labworks,
+                            Lectures = s.Lectures,
+                            Practical = s.Practical
+                        }).ToList();
         }
     }
 }

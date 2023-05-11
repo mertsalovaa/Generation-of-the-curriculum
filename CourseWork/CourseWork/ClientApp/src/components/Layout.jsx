@@ -1,22 +1,22 @@
 import React, { Component } from "react";
 import { Header } from "./Header";
 import Footer from "./Footer";
+import styled from "styled-components";
 
 export class Layout extends React.Component {
   static displayName = Layout.name;
-
-  constructor(props) {
-    super(props);
-    this.state = { spinnerLoading: true };
-  }
 
   render() {
     return (
       <div>
         <Header />
-        {this.props.children}
+        <Body>{this.props.children}</Body>
         <Footer />
       </div>
     );
   }
 }
+
+const Body = styled.div`
+  min-height: 55.6vh;
+`;

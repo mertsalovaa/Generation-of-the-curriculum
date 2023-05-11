@@ -56,8 +56,8 @@ export const Header = () => {
                 id="logout"
                 className="w-100 d-flex justify-content-evenly align-items-center"
               >
-                <HeaderLink to="/">Твої предмети</HeaderLink>
-                <HeaderLink to="/">Твої одногрупники</HeaderLink>
+                <HeaderLink to="/client/subjects">Твої предмети</HeaderLink>
+                <HeaderLink to="/client/classmates">Твої одногрупники</HeaderLink>
                 <HeaderLink to="/profile">Твій профіль</HeaderLink>
                 <Lang>
                   Укр <span>/ Eng</span>
