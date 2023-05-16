@@ -9,6 +9,10 @@ import { GenerateAbiturient } from "./components/Generate-abiturient";
 import Profile from "./components/Profile";
 import ClassmatesPage from "./components/client-pages/classmates";
 import SubjectsPage from "./components/client-pages/subjects";
+import SubjectInfo from "./components/client-pages/subject-info";
+import TeacherInfo from "./components/client-pages/teacher";
+
+export const API_URL = "https://localhost:44308/api/User";
 
 export default class App extends React.Component {
   static displayName = App.name;
@@ -22,6 +26,8 @@ export default class App extends React.Component {
           <Route path="/generate-abiturient" component={GenerateAbiturient} />
           <Route path="/client/classmates" component={ClassmatesPage} />
           <Route path="/client/subjects" component={SubjectsPage} />
+          <Route path="/client/subject-info/:name" component={SubjectInfo} />
+          <Route path="/client/teacher-info/:email" component={TeacherInfo} />
         </Layout>
       </Router>
     );

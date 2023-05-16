@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import AuthService from "../services/AuthService";
+import { API_URL } from "../App";
+import { data } from "jquery";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -12,8 +14,23 @@ export function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const responce = AuthService.login(dataJson.Email, dataJson.Password);
-    window.location.replace('./');
+    fetch(`${API_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataJson)
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          localStorage.setItem("token", response.token);
+          localStorage.setItem("email", dataJson.Email);
+        }
+      });
+
+    window.location.replace("./profile");
   }
 
   return (

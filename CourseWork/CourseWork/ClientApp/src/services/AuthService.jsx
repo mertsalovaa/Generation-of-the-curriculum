@@ -20,20 +20,7 @@ class AuthService {
     return data;
   }
 
-  login(email, password) {
-    return axios
-      .post(API_URL + "login", {
-        email,
-        password,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("email", email);
-        }
-        return response.data;
-      });
-  }
+
 
   logout() {
     localStorage.removeItem("token");

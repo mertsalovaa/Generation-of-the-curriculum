@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import styled from "styled-components";
+import { API_URL } from "../../App";
 
 class ClassmatesPage extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class ClassmatesPage extends React.Component {
 
   componentDidMount() {
     fetch(
-      `https://localhost:44308/api/User/get-classmates-by-email?email=${localStorage.getItem(
+      `${API_URL}/get-classmates-by-email?email=${localStorage.getItem(
         "email"
       )}`
     )

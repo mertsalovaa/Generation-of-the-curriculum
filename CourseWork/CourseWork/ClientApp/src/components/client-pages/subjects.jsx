@@ -1,5 +1,8 @@
 import React from "react";
 import { Table } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+import styled from "styled-components";
+import { API_URL } from "../../App";
 
 class SubjectsPage extends React.Component {
   constructor(props) {
@@ -9,9 +12,7 @@ class SubjectsPage extends React.Component {
 
   componentDidMount() {
     fetch(
-      `https://localhost:44308/api/User/get-subject-by-email?email=${localStorage.getItem(
-        "email"
-      )}`
+      `${API_URL}/get-subject-by-email?email=${localStorage.getItem("email")}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -37,17 +38,24 @@ class SubjectsPage extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {group.map((item) => 
-                <tr key={item.id}>
-                  <td>–</td>
-                  <td>{item.name}</td>
-                  <td>{item.formOfControl}</td>
-                  <td>{item.credits}</td>
-                  <td>{item.lectures}</td>
-                  <td>{item.labworks}</td>
-                  <td>{item.practical}</td>
-                </tr>
-            )}
+            {group.map((item) => (
+              <tr key={item.id}>
+                <td>–</td>
+                <td>
+                  <CustLink
+                    className="w-100"
+                    to={`/client/subject-info/${item.name}`}
+                  >
+                    {item.name}
+                  </CustLink>
+                </td>
+                <td>{item.formOfControl}</td>
+                <td>{item.credits}</td>
+                <td>{item.lectures}</td>
+                <td>{item.labworks}</td>
+                <td>{item.practical}</td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </div>
@@ -55,3 +63,12 @@ class SubjectsPage extends React.Component {
   }
 }
 export default SubjectsPage;
+
+const CustLink = styled(Link)`
+  text-decoration: none !important;
+  color: black;
+
+  &:hover {
+    color: black;
+  }
+`;

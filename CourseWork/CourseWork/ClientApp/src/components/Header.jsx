@@ -21,10 +21,10 @@ export const Header = () => {
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
-    setToken(AuthService.getToken());
+    setToken(JSON.stringify(localStorage.getItem("token")));
     setCurrentUser(localStorage.getItem("email"));
   }, [token, currentUser]);
-  
+
   window.onload = () => {
     if (token.length === 4 || token === null) {
       console.log(token);
@@ -35,7 +35,7 @@ export const Header = () => {
   };
 
   const logout = () => {
-    AuthService.logout();
+    localStorage.removeItem("token");
     localStorage.removeItem("email");
     setToken(null);
     console.log(token);
@@ -57,7 +57,9 @@ export const Header = () => {
                 className="w-100 d-flex justify-content-evenly align-items-center"
               >
                 <HeaderLink to="/client/subjects">Твої предмети</HeaderLink>
-                <HeaderLink to="/client/classmates">Твої одногрупники</HeaderLink>
+                <HeaderLink to="/client/classmates">
+                  Твої одногрупники
+                </HeaderLink>
                 <HeaderLink to="/profile">Твій профіль</HeaderLink>
                 <Lang>
                   Укр <span>/ Eng</span>

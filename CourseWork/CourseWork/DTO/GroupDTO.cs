@@ -16,6 +16,6 @@ namespace CourseWork.DTO
         public string FormOfStudying { get; set; }
         public string Speciality { get; set; }
         public ICollection<StudentDTO> Students { get;set; }
-        public string Сurriculum { get; set; }
+        public СurriculumDTO Сurriculum { get; set; }
     }
 }

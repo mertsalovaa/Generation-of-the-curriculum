@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { MarginCenter, grayFooter } from "./utils/colors";
+import { API_URL } from "../App";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Profile extends React.Component {
 
   componentDidMount() {
     fetch(
-      `https://localhost:44308/api/User/get-current-student?email=${localStorage.getItem("email")}`
+      `${API_URL}/get-current-student?email=${localStorage.getItem("email")}`
     )
       .then((response) => response.json())
       .then((data) => {
