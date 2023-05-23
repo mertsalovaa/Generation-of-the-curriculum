@@ -127,6 +127,7 @@ const styleInput = css`
     font-weight: 600;
     font-size: 0.95em !important;
     margin: 0;
+    min-width: 4.5em;
     width: 6.2em;
   }
   p {
