@@ -15,30 +15,29 @@ import {
 import { device, FontInterSBold } from "./utils/styling-partial";
 import AuthService from "../services/AuthService";
 import "../custom.css";
+import { Toaster, toast } from "react-hot-toast";
 
 export const Header = () => {
   const [token, setToken] = useState();
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
-    setToken(JSON.stringify(localStorage.getItem("token")));
+    // setToken(JSON.stringify(localStorage.getItem("token")));
     setCurrentUser(localStorage.getItem("email"));
-  }, [token, currentUser]);
+  }, [currentUser]);
 
-  window.onload = () => {
-    if (token.length === 4 || token === null) {
-      console.log(token);
-      document.getElementById("logout").style = "display: none !important;";
-    } else {
-      document.getElementById("login").style = "display: none !important;";
-    }
-  };
+  // window.onload = () => {
+  //   if (token.length === 4 || token === null) {
+  //     console.log(token);
+  //     document.getElementById("logout").style = "display: none !important;";
+  //   } else {
+  //     document.getElementById("login").style = "display: none !important;";
+  //   }
+  // };
 
   const logout = () => {
-    localStorage.removeItem("token");
+    toast.success("Ви вийшли.");
     localStorage.removeItem("email");
-    setToken(null);
-    console.log(token);
     window.location.replace("./");
   };
 
@@ -52,29 +51,31 @@ export const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Menu className="w-100">
             <div className="w-100 d-flex justify-content-between align-items-center me-lg-0 me-xl-4 m-0">
-              <span
-                id="logout"
-                className="w-100 d-flex justify-content-evenly align-items-center"
-              >
-                <HeaderLink to="/client/subjects">Твої предмети</HeaderLink>
-                <HeaderLink to="/client/classmates">
-                  Твої одногрупники
-                </HeaderLink>
-                <HeaderLink to="/profile">Твій профіль</HeaderLink>
-                <Lang>
-                  Укр <span>/ Eng</span>
-                </Lang>
-                <HeaderLink to={""} onClick={logout}>
-                  Вийти
-                </HeaderLink>
-              </span>
-              <Link id="login" to={"/login"}>
+              {currentUser == null ? (
+                <></>
+              ) : (
+                <>
+                  <HeaderLink to="/client/subjects">Твої предмети</HeaderLink>
+                  <HeaderLink to="/client/classmates">
+                    Твої одногрупники
+                  </HeaderLink>
+                  <HeaderLink to="/profile">Твій профіль</HeaderLink>
+                  <Lang>
+                    Укр <span>/ Eng</span>
+                  </Lang>
+                  <HeaderLink to={""} onClick={logout}>
+                    Вийти
+                  </HeaderLink>
+                </>
+              )}
+              {/* <Link id="login" to={"/login"}>
                 <SignInBtn>Увійти</SignInBtn>
-              </Link>
+              </Link> */}
             </div>
           </Menu>
         </Navbar.Collapse>
       </Container>
+      <Toaster />
     </NavbarDiv>
   );
 };

@@ -29,7 +29,6 @@ class SubjectsPage extends React.Component {
             <tr>
               <th>#</th>
               <th>Назва</th>
-              {/* <th>Опис</th> */}
               <th>Тип</th>
               <th>Кредити</th>
               <th>Лекції</th>

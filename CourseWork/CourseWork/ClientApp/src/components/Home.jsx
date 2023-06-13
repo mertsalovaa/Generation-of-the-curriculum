@@ -31,9 +31,9 @@ export function Home() {
             <Link to={"/login"}>
               <BeginBtn className="m-3">Розпочати</BeginBtn>
             </Link>
-            <Link to={"/generate-abiturient"}>
+            {/* <Link to={"/generate-abiturient"}>
               <BeginBtn className="m-3">Генерація абітурієнта</BeginBtn>
-            </Link>
+            </Link> */}
           </MyCol>
         </Row>
       ) : (

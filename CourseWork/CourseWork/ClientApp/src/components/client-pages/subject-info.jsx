@@ -52,7 +52,7 @@ export default class SubjectInfo extends React.Component {
           <h5>Предмет:</h5>
           <p>{subject.name}</p>
         </Custtext>
-        <Custtext className="d-flex align-items-center">
+        <Custtext className="d-flex ">
           <h5>Опис:</h5>
           <p>{subject.description}</p>
         </Custtext>
@@ -73,7 +73,7 @@ export default class SubjectInfo extends React.Component {
             <h5>Лабораторні:</h5>
             <p>{subject.labworks}</p>
           </span>
-          <span className="col d-flex align-items-center">
+          <span className="col d-flex align-items-center m-0">
             <h5>Практичні:</h5>
             <p>{subject.practical}</p>
           </span>
@@ -100,7 +100,7 @@ export default class SubjectInfo extends React.Component {
 
 const TeacherSpan = styled.span`
   line-height: 1.2em;
-
+margin-left: 0.5em;
   a {
     color: ${headerLink};
     font-weight: 400;
@@ -109,7 +109,7 @@ const TeacherSpan = styled.span`
     font-size: 0.9em;
     &:hover {
       text-decoration: none;
-      font-weight: 500
+      font-weight: 500;
     }
   }
 `;
@@ -128,7 +128,6 @@ const styleInput = css`
     font-size: 0.95em !important;
     margin: 0;
     min-width: 4.5em;
-    width: 6.2em;
   }
   p {
     font-size: 0.95em !important;
@@ -140,7 +139,13 @@ const styleInput = css`
 
 const Custtext = styled.span`
   ${styleInput};
+  min-width: 100px !important;
 `;
 const Custdiv = styled.div`
   ${styleInput};
+  padding-left: 0.55em !important;
+  padding-right: 0.55em !important;
+  span {
+    margin: 0 !important;
+  }
 `;
