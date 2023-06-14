@@ -27,5 +27,6 @@ namespace CourseWork.DATA_ACCESS.Entities
         public float Labworks { get; set; }
         public float Practical { get; set; }
         public ICollection<Teacher> Teachers { get; set; }
+        public int СurriculumId { get; set; }
     }
 }

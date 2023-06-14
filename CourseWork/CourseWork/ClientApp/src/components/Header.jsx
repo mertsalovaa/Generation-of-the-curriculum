@@ -60,9 +60,9 @@ export const Header = () => {
                     Твої одногрупники
                   </HeaderLink>
                   <HeaderLink to="/profile">Твій профіль</HeaderLink>
-                  <Lang>
+                  {/* <Lang>
                     Укр <span>/ Eng</span>
-                  </Lang>
+                  </Lang> */}
                   <HeaderLink to={""} onClick={logout}>
                     Вийти
                   </HeaderLink>

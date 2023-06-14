@@ -6,6 +6,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { FontInterSBold } from "./utils/styling-partial";
 import { lightMainColor, mainColor } from "./utils/colors";
 import { Link } from "react-router-dom";
+import { API_URL } from "../App";
 
 export function Home() {
   const [currentUser, setCurrentUser] = useState();

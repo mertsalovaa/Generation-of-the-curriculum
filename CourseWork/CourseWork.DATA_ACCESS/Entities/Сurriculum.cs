@@ -14,11 +14,11 @@ namespace CourseWork.DATA_ACCESS.Entities
             Groups = new List<Group>();
         }
 
-        [Key] 
+        [Key]
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }    
+        public string Name { get; set; }
         public int Year { get; set; }
         public ICollection<Subject> Subjects { get; set; }
         public ICollection<Group> Groups { get; set; }

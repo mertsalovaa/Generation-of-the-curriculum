@@ -13,6 +13,7 @@ using CourseWork.DOMAIN.Validator;
 using CourseWork.DOMAIN.JWT;
 using System.IO;
 using System.Text;
+using Microsoft.Office.Interop.Excel;
 
 namespace CourseWork.Controllers
 {
@@ -212,12 +213,12 @@ namespace CourseWork.Controllers
         [HttpGet("get-subject-by-email")]
         public List<SubjectDTO> GetSubjectsByEmail([FromQuery] string email)
         {
-            return context.Subjects.Where(s => s.Id ==
-            (context.Сurriculums.FirstOrDefault(c => c.Id == context.Groups.FirstOrDefault(
-                g => g.Id == (context.Students.FirstOrDefault(
-                    s => s.Id == context.Users.FirstOrDefault(
-                        u => u.CooperativeEmail == email).Id).GroupId)).СurriculumId)).Id).Select(s => new SubjectDTO()
-                        {
+            var user = context.Users.FirstOrDefault(u => u.CooperativeEmail == email);
+            var student = context.Students.FirstOrDefault(s => s.Id == user.Id);
+            var group = context.Groups.FirstOrDefault(g => g.Id == student.GroupId);
+            var curriculmn = context.Сurriculums.FirstOrDefault(c => c.Id == group.СurriculumId);
+            var subj =  context.Subjects.Where(s => s.СurriculumId == curriculmn.Id).Select(s => new SubjectDTO()
+                      {
                             Id = s.Id,
                             Description = s.Description,
                             Credits = s.Credits,
@@ -227,18 +228,20 @@ namespace CourseWork.Controllers
                             Lectures = s.Lectures,
                             Practical = s.Practical
                         }).ToList();
+            return subj;
         }
 
         [HttpGet("get-subject-info")]
         public SubjectDTO GetSubjectInfo([FromQuery] string subjectName)
         {
-            var subject = context.Subjects.FirstOrDefault(x=>x.Name == subjectName);
+            var subject = context.Subjects.FirstOrDefault(x => x.Name == subjectName);
             var teachers = context.SubjectTeachers.Where(
                 s => s.SubjectId == subject.Id)
-                .Select(t => new TeacherDTO() {
-                    FirstName = context.Users.FirstOrDefault(u=>u.Id == t.TeacherId).FirstName,
-                    LastName = context.Users.FirstOrDefault(u=>u.Id == t.TeacherId).LastName,
-                    MiddleName = context.Users.FirstOrDefault(u=>u.Id == t.TeacherId).MiddleName,
+                .Select(t => new TeacherDTO()
+                {
+                    FirstName = context.Users.FirstOrDefault(u => u.Id == t.TeacherId).FirstName,
+                    LastName = context.Users.FirstOrDefault(u => u.Id == t.TeacherId).LastName,
+                    MiddleName = context.Users.FirstOrDefault(u => u.Id == t.TeacherId).MiddleName,
                     CooperativeEmail = context.Users.FirstOrDefault(u => u.Id == t.TeacherId).CooperativeEmail
                 });
             return new SubjectDTO()
